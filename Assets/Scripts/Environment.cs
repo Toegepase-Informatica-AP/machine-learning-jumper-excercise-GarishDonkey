@@ -23,6 +23,12 @@ public class Environment : MonoBehaviour
         this.scoreboard.text = player.GetCumulativeReward().ToString("f2");
     }
 
+    public void SpawnObstacleLoop()
+    {
+        SpawnObstacle();
+
+    }
+
     public void SpawnObstacle()
     {
         Debug.Log("Spawned obstacle");

@@ -16,4 +16,12 @@ public class Obstacle : MonoBehaviour
     {
         this.transform.Translate(Vector3.right * this.speed * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
