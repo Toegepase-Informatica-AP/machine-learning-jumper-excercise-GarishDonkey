@@ -8,6 +8,7 @@ TagManager:
   - Road
   - Wall
   - Reward
+  - Coin
   layers:
   - Default
   - TransparentFX

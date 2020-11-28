@@ -6,11 +6,20 @@ using UnityEngine;
 public class Environment : MonoBehaviour
 {
     public Transform obstacleSpawnPoint;
+    public Transform coinSpawnPoint;
+    public Coin coinPrefab;
     public Obstacle obsactlePrefab;
+    public float minSpawnTimeObstacle = 3f;
+    public float maxSpawnTimeObstacle = 6f;
+    public float minSpawnTimeCoin = 3f;
+    public float maxSpawnTimeCoin = 20f;
 
-    private GameObject spawnedObject;
+    private GameObject spawnedObstacle;
+    private GameObject spawnedCoin;
     private Player player;
     private TextMeshPro scoreboard;
+    public GameObject obstacles;
+    public GameObject coins;
 
     public void OnEnable()
     {
@@ -23,21 +32,34 @@ public class Environment : MonoBehaviour
         this.scoreboard.text = player.GetCumulativeReward().ToString("f2");
     }
 
-    public void SpawnObstacleLoop()
-    {
-        SpawnObstacle();
-
-    }
-
     public void SpawnObstacle()
     {
         Debug.Log("Spawned obstacle");
-        spawnedObject = Instantiate(obsactlePrefab.gameObject);
-        spawnedObject.transform.position = new Vector3(obstacleSpawnPoint.position.x, obstacleSpawnPoint.position.y, obstacleSpawnPoint.position.z);
+        spawnedObstacle = Instantiate(obsactlePrefab.gameObject);
+        spawnedObstacle.transform.SetParent(obstacles.transform);
+        spawnedObstacle.transform.position = new Vector3(obstacleSpawnPoint.position.x, obstacleSpawnPoint.position.y, obstacleSpawnPoint.position.z);
+        Invoke("SpawnObstacle", Random.Range(minSpawnTimeObstacle, maxSpawnTimeObstacle));
     }
 
-    public void DestroySpawnedObstacle()
+    public void SpawnCoin()
     {
-        Destroy(spawnedObject);
+        Debug.Log("Spawned coin");
+        spawnedCoin = Instantiate(coinPrefab.gameObject);
+        spawnedCoin.transform.position = new Vector3(coinSpawnPoint.position.x, coinSpawnPoint.position.y, coinSpawnPoint.position.z);
+        spawnedCoin.transform.SetParent(coins.transform);
+        Invoke("SpawnCoin", Random.Range(minSpawnTimeCoin, maxSpawnTimeCoin));
+    }
+
+    public void DestroyAllSpawnedObjects()
+    {
+        CancelInvoke();
+        foreach(Transform obstacle in obstacles.transform)
+        {
+            Destroy(obstacle.gameObject);
+        }
+        foreach(Transform coin in coins.transform)
+        {
+            Destroy(coin.gameObject);
+        }
     }
 }

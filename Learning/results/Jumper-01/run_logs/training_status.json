@@ -2,41 +2,41 @@
     "Jumper": {
         "checkpoints": [
             {
-                "steps": 1799991,
-                "file_path": "results\\Jumper-01\\Jumper\\Jumper-1799991.nn",
-                "reward": 0.800000011920929,
-                "creation_time": 1606511019.4665654
+                "steps": 3849947,
+                "file_path": "results\\Jumper-01\\Jumper\\Jumper-3849947.nn",
+                "reward": 0.49999995809048414,
+                "creation_time": 1606598505.9214308
             },
             {
-                "steps": 1849950,
-                "file_path": "results\\Jumper-01\\Jumper\\Jumper-1849950.nn",
-                "reward": 0.800000011920929,
-                "creation_time": 1606511072.5512156
+                "steps": 3899953,
+                "file_path": "results\\Jumper-01\\Jumper\\Jumper-3899953.nn",
+                "reward": 0.9349999334663153,
+                "creation_time": 1606598595.6694324
             },
             {
-                "steps": 1899953,
-                "file_path": "results\\Jumper-01\\Jumper\\Jumper-1899953.nn",
-                "reward": 0.800000011920929,
-                "creation_time": 1606511124.2746346
+                "steps": 3949937,
+                "file_path": "results\\Jumper-01\\Jumper\\Jumper-3949937.nn",
+                "reward": 2.5999998956918717,
+                "creation_time": 1606598683.4624314
             },
             {
-                "steps": 1949949,
-                "file_path": "results\\Jumper-01\\Jumper\\Jumper-1949949.nn",
-                "reward": 0.800000011920929,
-                "creation_time": 1606511176.4096494
+                "steps": 3999989,
+                "file_path": "results\\Jumper-01\\Jumper\\Jumper-3999989.nn",
+                "reward": 0.895833274970452,
+                "creation_time": 1606598771.6374304
             },
             {
-                "steps": 1974936,
-                "file_path": "results\\Jumper-01\\Jumper\\Jumper-1974936.nn",
-                "reward": 0.800000011920929,
-                "creation_time": 1606511204.398649
+                "steps": 4025391,
+                "file_path": "results\\Jumper-01\\Jumper\\Jumper-4025391.nn",
+                "reward": 1.7749999277293682,
+                "creation_time": 1606598817.4394321
             }
         ],
         "final_checkpoint": {
-            "steps": 1974936,
+            "steps": 4025391,
             "file_path": "results\\Jumper-01\\Jumper.nn",
-            "reward": 0.800000011920929,
-            "creation_time": 1606511204.398649
+            "reward": 1.7749999277293682,
+            "creation_time": 1606598817.4394321
         }
     },
     "metadata": {

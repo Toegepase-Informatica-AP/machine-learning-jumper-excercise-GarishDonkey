@@ -8,6 +8,7 @@ public class Player : Agent
     public Transform spawnPoint = null;
     public float Force = 15f;
     private bool canJump = false;
+
     public override void Initialize()
     {
         this.body = this.GetComponent<Rigidbody>();
@@ -17,11 +18,12 @@ public class Player : Agent
     public override void OnEpisodeBegin()
     {
         ResetPlayer();
+        environment.DestroyAllSpawnedObjects();
         environment.SpawnObstacle();
+        environment.Invoke("SpawnCoin", Random.Range(environment.minSpawnTimeCoin, environment.maxSpawnTimeCoin));
     }
 
     private void OnCollisionEnter(Collision collision)
-
     {
         if (collision.gameObject.CompareTag("Obstacle") == true)
         {
@@ -37,11 +39,14 @@ public class Player : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Reward"))
+        if (other.CompareTag("Coin"))
         {
-            AddReward(1f);
-            //Destroy(other.gameObject);
-            //EndEpisode();
+            AddReward(0.5f);
+            Destroy(other.gameObject);
+            if (this.GetCumulativeReward() >= 50f)
+            {
+                EndEpisode();
+            }
         }
     }
 
@@ -51,24 +56,20 @@ public class Player : Agent
         body.AddForce(Vector3.up * Force, ForceMode.Impulse);
     }
 
-
-
     public override void OnActionReceived(float[] vectorAction)
     {
         if(vectorAction[0] == 1 && canJump)
         {
-            AddReward(-0.2f);
+            AddReward(-0.05f);
             MoveUpwards();
         }
     }
-
 
     public override void Heuristic(float[] actionsOut)
     {
         actionsOut[0] = 0;
         if(Input.GetKey(KeyCode.UpArrow) == true && canJump)
         {
-            
             actionsOut[0] = 1;
         }
     }
