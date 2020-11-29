@@ -12,7 +12,7 @@ __Gemaakt door:__
 1. [Inleiding](#inleiding)
 1. [Rewards en verloop](#rewards-en-verloop)
 1. [Installaties en voorbereiding](#installaties-en-voorbereiding)
-1. [GameObjecten en scripts](#gameobjecten-en-scripts)
+1. [GameObjecten en scripts](#GameObjecten-en-scripts)
 1. [Trainen van de Agent](#bronnen)
 1. [Bronnen](#bronnen)
 
@@ -24,9 +24,9 @@ __Gemaakt door:__
 
 ## Definities
 
-- **Player** - De gebruiker of **agent** die het gameobject 'Player' controleert.
+- **Player** - De gebruiker of **agent** die het GameObject 'Player' controleert.
 - **Obstacle** - Het obstakel waar de **player** over springt.
-- **Agent** - Het gameobject met het neural-network.
+- **Agent** - Het GameObject met het neural-network.
 
 ## Inleiding
 
@@ -51,7 +51,7 @@ Er kunnen ook nog Coins spawnen die in de lucht over de **Player** bewegen. De *
 
 ## Gameobjecten en scripts
 
-Het project bestaat uit verschillende gameobjecten en scripts. Hier volgt een beschrijving van elk gameobject met de scripts.
+Het project bestaat uit verschillende GameObjecten en scripts. Hier volgt een beschrijving van elk GameObject met de scripts.
 
 ### Environment
 
@@ -123,7 +123,7 @@ public class Environment : MonoBehaviour
 ```
 
 Het Environment script wordt gebruikt om de **Obstacles** en de Coins in te spawnen op willekeurige momenten. Hiervoor worden de *SpawnObstacle* en *SpawnCoin* methodes gebruikt. Deze methodes instantiëren
-een nieuw **Obstacle** of coin die worden toegevoegd aan hun parent, *obstacles* of *coins*. De gameobjecten worden aan de hand van het *obstacleSpawnPoint* en *coinSpawnPoint* op de juiste plek gespawned. De *minSpawnTimeObstacle*, *maxSpawnTimeObstacle*, *minSpawnTimeCoin* en *maxSpawnTimeCoin* variabelen bepalen de minimum en maximumtijd waartussen de **Obstacles** en coins kunnen spawnen.
+een nieuw **Obstacle** of coin die worden toegevoegd aan hun parent, *obstacles* of *coins*. De GameObjecten worden aan de hand van het *obstacleSpawnPoint* en *coinSpawnPoint* op de juiste plek gespawned. De *minSpawnTimeObstacle*, *maxSpawnTimeObstacle*, *minSpawnTimeCoin* en *maxSpawnTimeCoin* variabelen bepalen de minimum en maximumtijd waartussen de **Obstacles** en coins kunnen spawnen.
 
 De *FixedUpdate* methode wordt gebruikt om het scoreboard up te daten met de laatste comulatieve beloning van de **Agent**.
 
@@ -278,7 +278,7 @@ Er zijn 2 mogelijke scenario's:
 
 ![obstacle_settings](Screenshots/obstacle_settings.png)
 
-Het is belangrijk dat we het gameobject de tag 'Obstacle' geven. Deze tag wordt gebruikt om het gameObject 'Obstacle' apart aan te spreken van de prefab 'Obstacle'. We maken de breedte van het **Obstacle** breed genoeg, zodat de **player** er niet langs zou kunnen gaan. De hoogte is bepaald zodat de **player** er net over geraakt met een sprong. **Obstacle** moet een Collider en een Rigidbody bevatten om collisions te detecteren met de **player**. Bij de Rigidbody is het belangrijk dat we de positie freezen tot dat hij enkel beweegbaar is op de X as.
+Het is belangrijk dat we het GameObject de tag 'Obstacle' geven. Deze tag wordt gebruikt om het gameObject 'Obstacle' apart aan te spreken van de prefab 'Obstacle'. We maken de breedte van het **Obstacle** breed genoeg, zodat de **player** er niet langs zou kunnen gaan. De hoogte is bepaald zodat de **player** er net over geraakt met een sprong. **Obstacle** moet een Collider en een Rigidbody bevatten om collisions te detecteren met de **player**. Bij de Rigidbody is het belangrijk dat we de positie freezen tot dat hij enkel beweegbaar is op de X as.
 
 ![obstacle_contraints](Screenshots/obstacle_contraints.png)
 
@@ -315,11 +315,11 @@ Elke keer wanneer een **Obstacle** spawnt, is de speed willekeurig. De minimum e
 
 ![reward_settings](Screenshots/reward_settings.png)
 
-Ook hier is een belangrijke tag aanwezig: 'Reward'. De locatie van dit gameobject bevindt zich op de grond, achter het **obstacle**. Het gameobject moet de volledige zone bedekken waar een **player** mogelijk kan landen na het springen over een **obstacle**. De zone hoeft niet zichtbaar te zijn dus mesh renderer wordt uitgezet. Reward bevat ook een box collider en een rigidbody om correct collisions or triggers te kunnen detecteren met andere gameobjecten. Het is belangrijk dat de collider een trigger is en rigidbody 'kinematic' is.
+Ook hier is een belangrijke tag aanwezig: 'Reward'. De locatie van dit GameObject bevindt zich op de grond, achter het **obstacle**. Het GameObject moet de volledige zone bedekken waar een **player** mogelijk kan landen na het springen over een **obstacle**. De zone hoeft niet zichtbaar te zijn dus mesh renderer wordt uitgezet. Reward bevat ook een box collider en een rigidbody om correct collisions or triggers te kunnen detecteren met andere GameObjecten. Het is belangrijk dat de collider een trigger is en rigidbody 'kinematic' is.
 
 ### WallEnd
 
-Op het einde van het Platform staat nog gameobject om alle gameobjects die richting de **player** bewegen op te vangen en te verwijderen. Zo blijft de environment proper.
+Op het einde van het Platform staat nog GameObject om alle GameObjecten die richting de **player** bewegen op te vangen en te verwijderen. Zo blijft de environment proper.
 
 ![wallend](Screenshots/wallend.png)
 
@@ -343,7 +343,7 @@ public class WallOfDeath : MonoBehaviour
 }
 ```
 
-Wanneer een gameobject de WallEnd triggert, wordt het direct verwijderd.
+Wanneer een GameObject de WallEnd triggert, wordt het direct verwijderd.
 
 ### Coin
 
