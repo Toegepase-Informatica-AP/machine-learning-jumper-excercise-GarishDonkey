@@ -27,7 +27,7 @@ public class Player : Agent
     {
         if (collision.gameObject.CompareTag("Obstacle") == true)
         {
-            AddReward(-1.0f);
+            AddReward(-2.0f);
             Destroy(collision.gameObject);
             EndEpisode();
         } 
@@ -47,6 +47,11 @@ public class Player : Agent
             {
                 EndEpisode();
             }
+        }
+        if (other.CompareTag("Reward") == true)
+        {
+            AddReward(0.2f);
+            Destroy(other.gameObject);
         }
     }
 
