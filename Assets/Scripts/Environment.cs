@@ -34,7 +34,6 @@ public class Environment : MonoBehaviour
 
     public void SpawnObstacle()
     {
-        Debug.Log("Spawned obstacle");
         spawnedObstacle = Instantiate(obsactlePrefab.gameObject);
         spawnedObstacle.transform.SetParent(obstacles.transform);
         spawnedObstacle.transform.position = new Vector3(obstacleSpawnPoint.position.x, obstacleSpawnPoint.position.y, obstacleSpawnPoint.position.z);
@@ -43,7 +42,6 @@ public class Environment : MonoBehaviour
 
     public void SpawnCoin()
     {
-        Debug.Log("Spawned coin");
         spawnedCoin = Instantiate(coinPrefab.gameObject);
         spawnedCoin.transform.position = new Vector3(coinSpawnPoint.position.x, coinSpawnPoint.position.y, coinSpawnPoint.position.z);
         spawnedCoin.transform.SetParent(coins.transform);

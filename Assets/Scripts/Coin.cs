@@ -20,7 +20,6 @@ public class Coin : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("Coin triggered");
             Destroy(this.gameObject);
         }
     }

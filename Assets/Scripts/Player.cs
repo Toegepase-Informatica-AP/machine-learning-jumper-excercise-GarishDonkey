@@ -41,7 +41,7 @@ public class Player : Agent
     {
         if (other.CompareTag("Coin"))
         {
-            AddReward(0.5f);
+            AddReward(0.6f);
             Destroy(other.gameObject);
             if (this.GetCumulativeReward() >= 50f)
             {
@@ -57,6 +57,7 @@ public class Player : Agent
 
     void MoveUpwards()
     {
+        AddReward(-0.1f);
         canJump = false;
         body.AddForce(Vector3.up * Force, ForceMode.Impulse);
     }
@@ -65,7 +66,6 @@ public class Player : Agent
     {
         if(vectorAction[0] == 1 && canJump)
         {
-            AddReward(-0.05f);
             MoveUpwards();
         }
     }
