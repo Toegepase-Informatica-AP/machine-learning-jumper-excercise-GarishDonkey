@@ -276,7 +276,7 @@ Er zijn 2 mogelijke scenario's:
 
 #### Settings Obstacle
 
-![obstacle_selected](Screenshots/obstacle_selected.png)
+![obstacle_selected](Screenshots/Obstacle_selected.png)
 
 ![obstacle_settings](Screenshots/obstacle_settings.png)
 
