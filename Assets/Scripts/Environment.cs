@@ -9,6 +9,8 @@ public class Environment : MonoBehaviour
     public Transform coinSpawnPoint;
     public Coin coinPrefab;
     public Obstacle obsactlePrefab;
+    public GameObject obstacles;
+    public GameObject coins;
     public float minSpawnTimeObstacle = 3f;
     public float maxSpawnTimeObstacle = 6f;
     public float minSpawnTimeCoin = 3f;
@@ -18,8 +20,6 @@ public class Environment : MonoBehaviour
     private GameObject spawnedCoin;
     private Player player;
     private TextMeshPro scoreboard;
-    public GameObject obstacles;
-    public GameObject coins;
 
     public void OnEnable()
     {
