@@ -8,7 +8,7 @@ __Gemaakt door:__
 ## Inhoudstafel
 
 1. [Requirements](#requirements)
-1. [Definties](#definities)
+1. [Definities](#definities)
 1. [Inleiding](#inleiding)
 1. [Rewards en verloop](#rewards-en-verloop)
 1. [Installaties en voorbereiding](#installaties-en-voorbereiding)
@@ -25,21 +25,21 @@ __Gemaakt door:__
 ## Definities
 
 - **Player** - De gebruiker of **agent** die het gameobject 'Player' controleert.
-- **Obstacle** - Het opstakel waar de **player** over springt.
+- **Obstacle** - Het obstakel waar de **player** over springt.
 - **Agent** - Het gameobject met het neural-network.
 
 ## Inleiding
 
-In deze oefening zullen we een Unity project opbouwen om een **Agent** te trainen. Deze **Agent** zal getrained worden om over obstakels te springen en coins uit de lucht te pakken.
+In deze oefening zullen we een Unity project opbouwen om een **Agent** te trainen. Deze **Agent** zal getraind worden om over obstakels te springen en coins uit de lucht te pakken.
 
 ## Rewards en verloop
 
 Een **Player** start bij het begin van elke episode op dezelfde plek. Deze **Player** kan enkel omhoog springen. Er spawnt op willekeurige momenten een **Obstacle** die met dezelfde snelheid naar de **Player** beweegt. Deze snelheid is elke keer anders. De **Player** moet over dit **Obstacle** springen om een beloning te ontvangen.
 Er kunnen ook nog Coins spawnen die in de lucht over de **Player** bewegen. De **Player** kan deze coins vangen om bonuspunten te verkrijgen.
 
-| Omschrijving | Cummulatieve beloning | Verklaring |
+| Omschrijving | Cumulatieve beloning | Verklaring |
 | - | - | - |
-| Springen | -0.10f | Door een straf te geven wanneer de **Player** springt zal hij enkel springen wannneer nodig|
+| Springen | -0.10f | Door een straf te geven wanneer de **Player** springt zal hij enkel springen wanneer nodig|
 | Botsen met **Obstacle** | -2.00f | Door een straf te geven wanneer de **Player** botst met een **Obstacle** zal hij leren om over het **Obstacle** te springen. |
 | Over **Obstacle** springen | +0.20f | Door een beloning te geven wanneer de **Player** over het **Obstacle** springt zal hij leren om over het **Obstacle** te springen. |
 | Coin vangen | +0.60f | Door een beloning te geven wanneer de **Player** een coin vangt zal hij leren om te springen om deze coins te vangen. |
@@ -122,10 +122,10 @@ public class Environment : MonoBehaviour
 }
 ```
 
-Het Environment script wordt gebruikt om de **Obstacles** en de Coins in te spawnen op willekeurige momenten. Hiervoor worden de *SpawnObstacle* en *SpawnCoin* methodes gebruikt. Deze methodes instantieren
-een nieuw **Obstacle** of coin die worden toegevoegd aan hun parent, *obstacles* of *coins*. De gameobjecten worden aan de hand van het *obstacleSpawnPoint* en *coinSpawnPoint* op de juiste plek gespawned. De *minSpawnTimeObstacle*, *maxSpawnTimeObstacle*, *minSpawnTimeCoin* en *maxSpawnTimeCoin* variabelen bepalen de minimum en maximum tijd waartussen de **Obstacles** en coins kunnen spawnen.
+Het Environment script wordt gebruikt om de **Obstacles** en de Coins in te spawnen op willekeurige momenten. Hiervoor worden de *SpawnObstacle* en *SpawnCoin* methodes gebruikt. Deze methodes instantiëren
+een nieuw **Obstacle** of coin die worden toegevoegd aan hun parent, *obstacles* of *coins*. De gameobjecten worden aan de hand van het *obstacleSpawnPoint* en *coinSpawnPoint* op de juiste plek gespawned. De *minSpawnTimeObstacle*, *maxSpawnTimeObstacle*, *minSpawnTimeCoin* en *maxSpawnTimeCoin* variabelen bepalen de minimum en maximumtijd waartussen de **Obstacles** en coins kunnen spawnen.
 
-De *FixedUpdate* methode wordt gebruikt om het scoreboard up te daten met de laatste commulatieve beloning van de **Agent**.
+De *FixedUpdate* methode wordt gebruikt om het scoreboard up te daten met de laatste comulatieve beloning van de **Agent**.
 
 De *DestroyAllSpawnedObjects* methode wordt gebruikt om de parent GameObjecten, *obstacles* en *coins* leeg te maken.
 
@@ -143,11 +143,11 @@ Aan het **Player** GameObject worden enkele scripts toegevoegd.
 
 Bij de instellingen van het **Player** script kunnen we het spawnpoint en de kracht van het springen definiëren.
 
-Bij de instellingen van de Behavior Parameters is het belangerijk dat we de Behavior Name de naam Jumper geven. Hierdoor kunnen we later bij het trainen de instellingen van het yml-bestand doorgeven.
+Bij de instellingen van de Behavior Parameters is het belangrijk dat we de Behavior Name de naam "Jumper" geven. Hierdoor kunnen we later bij het trainen de instellingen van het yml-bestand doorgeven.
 
-Bij de instellingen van de Ray Perception Sensor 3D stellen we in wat de **Player** kan zien. We zetten de Rays Per Direction parameter op 26 zodat er meerdere rays naarboven kijken om de coins te kunnen vangen. We voegen ook de twee Detectable Tags toe waarmee de **Agent** rekening moet houden. Deze tags zijn het **Obstacle** en de Coin.
+Bij de instellingen van de Ray Perception Sensor 3D stellen we in wat de **Player** kan zien. We zetten de Rays Per Direction parameter op 26 zodat er meerdere rays naar boven kijken om de coins te kunnen vangen. We voegen ook de twee Detectable Tags toe waarmee de **Agent** rekening moet houden. Deze tags zijn het **Obstacle** en de Coin.
 
-Bij de instellingen van de Decision Requester kunnen we instellen hoe vaak de **Agent** een decision vraagt. We zetten de Decision Period op 5.
+Bij de instellingen van de Decision Requester kunnen we instellen hoe vaak de **Agent** een decision vraagt. We stellen de Decision Period in op 5.
 
 #### Script Player
 
@@ -239,14 +239,13 @@ public class Player : Agent
 }
 ```
 
-- **Initialize** - We slagen we de rigidbody in een private variabel op. Deze is later nodig om te kunnen sptringen. Dit doen we ook voor het parent object waarin de **player** zich bevindt.
+- **Initialize** - We slagen de rigidbody in een private variabel op. Deze is later nodig om te kunnen springen. Dit doen we ook voor het parent object waarin de **player** zich bevindt.
 - **OnEpisodeBegin** - We resetten de **player** ( velocity, angularVelocity, position). We laten direct een **obstacle** spawnen en Invoken we de methode voor een coin te laten spawnen (**obstacle** spawnt altijd vanaf het begin. Coin spawnt na enkele tijd).
 - **OnCollisionEnter** - Wanneer we een collision hebben met een **obstacle**, wordt er een straf gegeven (-2.00f) en de episode wordt beëindigd. Wanneer de **player** de grond terug raakt, wordt hij terug toegelaten om te springen.
 - **OnTriggerEnter** - Hier worden de rewards van 'Coin' en 'Reward' bepaald.
 - **MoveUpwards** - Methode om te springen.
 - **OnActionRecieved** - Bepaald de mogelijke acties voor de **agent**
-- **Heuristic** - Staat een input van het toetsenbord toe om de **player** te controlleren.
-
+- **Heuristic** - Staat een input van het toetsenbord toe om de **player** te controleren.
 
 ### Platform
 
@@ -258,7 +257,7 @@ Het platform is een GameObject waarop de **Player** en de **Obstacles** spawnen.
 
 ![platform_settings](Screenshots/platform_settings.png)
 
-In de settings van het platform configureren we de grote zodat het een plat langwerpig platform is. Het is belangerijk om dit GameObject de Tag "Road" te geven zodat de **Player** weet wanneer hij op de grond staat.
+In de settings van het platform configureren we de grote zodat het een plat langwerpig platform is. Het is belangrijk om dit GameObject de Tag "Road" te geven zodat de **Player** weet wanneer hij op de grond staat.
 
 ### Obstacle
 
@@ -270,7 +269,7 @@ Een obstacle bestaat uit 2 game objecten. Een muur waar de **player** moet overs
 
 Er zijn 2 mogelijke scenario's:
 
-1. De **player** springt over het **obstacle** (-0.10f). Vervolgens landt de **player** in de reward zone. Hier wordt de **agent** beloondt voor het halen van een **obstacle** (+0.10) en krijgt hij een compensatie voor zijn sprong (+0.10).
+1. De **player** springt over het **obstacle** (-0.10f). Vervolgens landt de **player** in de reward zone. Hier wordt de **agent** beloond voor het halen van een **obstacle** (+0.10) en krijgt hij een compensatie voor zijn sprong (+0.10).
 2. De **player** raakt het **obstacle**. Hier krijgt de **agent** een straf (-2.00f). Vervolgens wordt de episode van de **agent** herstart.
 
 #### Settings Obstacle
@@ -279,7 +278,7 @@ Er zijn 2 mogelijke scenario's:
 
 ![obstacle_settings](Screenshots/obstacle_settings.png)
 
-Het is belangrijk dat we het gameobject de tag 'Obstacle' geven. Deze tagg wordt gebruikt om het gameObject 'Obstacle' appart aan te spreken van de prefab 'Obstacle'. We maken de breedte van het **Obstacle** breed genoeg, zodat de **player** er niet langs zou kunnen gaan. De hoogte is bepaalt zodat de **player** er net over geraakt met een sprong. **Obstacle** moet een Collider en een Rigidbody bevatten om collisions te detecteren met de **player**. Bij de Rigidbody is het belangrijk dat we de positie freezen tot dat hij enkel beweegbaar is op de X as.
+Het is belangrijk dat we het gameobject de tag 'Obstacle' geven. Deze tag wordt gebruikt om het gameObject 'Obstacle' apart aan te spreken van de prefab 'Obstacle'. We maken de breedte van het **Obstacle** breed genoeg, zodat de **player** er niet langs zou kunnen gaan. De hoogte is bepaald zodat de **player** er net over geraakt met een sprong. **Obstacle** moet een Collider en een Rigidbody bevatten om collisions te detecteren met de **player**. Bij de Rigidbody is het belangrijk dat we de positie freezen tot dat hij enkel beweegbaar is op de X as.
 
 ![obstacle_contraints](Screenshots/obstacle_contraints.png)
 
@@ -348,7 +347,7 @@ Wanneer een gameobject de WallEnd triggert, wordt het direct verwijderd.
 
 ### Coin
 
-De **player** kan emer punten verdienen door coins op te pakken. Deze spawnen ook willekeurig op het platform.
+De **player** kan meer punten verdienen door coins op te pakken. Deze spawnen ook willekeurig op het platform.
 
 ![coin](Screenshots/coin.png)
 
@@ -356,7 +355,7 @@ De **player** kan emer punten verdienen door coins op te pakken. Deze spawnen oo
 
 ![coin_settings](Screenshots/coin_settings.png)
 
-We gecen het obect de tag: 'Coin'. Zo kunnen we het object makkelijk aanspreken in andere klassen. Coin bevat een Sphere Collider en een RigidBody. In de collider specifiëren we dat coin een trigger is. In de rigidbody vinken we de 'Is Kinematic' aan. Tenslotte voegen we het script 'Coin' toe.
+We geven het object de tag: 'Coin'. Zo kunnen we het object makkelijk aanspreken in andere klassen. Coin bevat een Sphere Collider en een RigidBody. In de collider specifiëren we dat coin een trigger is. In de rigidbody vinken we de 'Is Kinematic' aan. Tenslotte voegen we het script 'Coin' toe.
 
 #### Script Coin
 
