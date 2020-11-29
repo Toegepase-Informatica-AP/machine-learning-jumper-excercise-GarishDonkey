@@ -7,11 +7,14 @@ __Gemaakt door:__
 
 ## Inhoudstafel
 
+1. [Requirements](#requirements)
 1. [Definties](#definities)
 1. [Inleiding](#inleiding)
 1. [Rewards en verloop](#rewards-en-verloop)
 1. [Installaties en voorbereiding](#installaties-en-voorbereiding)
-1. [GameObjecten](#gameobjecten)
+1. [GameObjecten en scripts](#gameobjecten-en-scripts)
+1. [Trainen van de Agent](#bronnen)
+1. [Bronnen](#bronnen)
 
 ## Requirements
 
@@ -21,13 +24,13 @@ __Gemaakt door:__
 
 ## Definities
 
-- **Player** - De gebruiker of agent die het gameobject 'Player' controleert.
+- **Player** - De gebruiker of **agent** die het gameobject 'Player' controleert.
 - **Obstacle** - Het opstakel waar de **player** over springt.
-- **Agent** - 
+- **Agent** - Het gameobject met het neural-network.
 
 ## Inleiding
 
-In deze oefening zullen we een Unity project opbouwen om een Agent te trainen. Deze Agent zal getrained worden om over obstakels te springen en coins uit de lucht te pakken.
+In deze oefening zullen we een Unity project opbouwen om een **Agent** te trainen. Deze **Agent** zal getrained worden om over obstakels te springen en coins uit de lucht te pakken.
 
 ## Rewards en verloop
 
@@ -142,7 +145,7 @@ Bij de instellingen van het **Player** script kunnen we het spawnpoint en de kra
 
 Bij de instellingen van de Behavior Parameters is het belangerijk dat we de Behavior Name de naam Jumper geven. Hierdoor kunnen we later bij het trainen de instellingen van het yml-bestand doorgeven.
 
-Bij de instellingen van de Ray Perception Sensor 3D stellen we in wat de **Player** kan zien. We zetten de Rays Per Direction parameter op 26 zodat er meerdere rays naarboven kijken om de coins te kunnen vangen. We voegen ook de twee Detectable Tags toe waarmee de Agent rekening moet houden. Deze tags zijn het **Obstacle** en de Coin.
+Bij de instellingen van de Ray Perception Sensor 3D stellen we in wat de **Player** kan zien. We zetten de Rays Per Direction parameter op 26 zodat er meerdere rays naarboven kijken om de coins te kunnen vangen. We voegen ook de twee Detectable Tags toe waarmee de **Agent** rekening moet houden. Deze tags zijn het **Obstacle** en de Coin.
 
 Bij de instellingen van de Decision Requester kunnen we instellen hoe vaak de **Agent** een decision vraagt. We zetten de Decision Period op 5.
 
@@ -313,7 +316,7 @@ Elke keer wanneer een **Obstacle** spawnt, is de speed willekeurig. De minimum e
 
 ![reward_settings](Screenshots/reward_settings.png)
 
-Ook hier is een belangrijke tag aanwezig: 'Reward'. De locatie van dit gameobject bevindt zich op de grond, achter het obstacle. Het gameobject moet de volledige zone bedekken waar een **player** mogelijk kan landen na het springen over een obstacle. De zone hoeft niet zichtbaar te zijn dus mesh renderer wordt uitgezet. Reward bevat ook een box collider en een rigidbody om correct collisions or triggers te kunnen detecteren met andere gameobjecten. Het is belangrijk dat de collider een trigger is en rigidbody 'kinematic' is.
+Ook hier is een belangrijke tag aanwezig: 'Reward'. De locatie van dit gameobject bevindt zich op de grond, achter het **obstacle**. Het gameobject moet de volledige zone bedekken waar een **player** mogelijk kan landen na het springen over een **obstacle**. De zone hoeft niet zichtbaar te zijn dus mesh renderer wordt uitgezet. Reward bevat ook een box collider en een rigidbody om correct collisions or triggers te kunnen detecteren met andere gameobjecten. Het is belangrijk dat de collider een trigger is en rigidbody 'kinematic' is.
 
 ### WallEnd
 
@@ -382,7 +385,7 @@ public class Coin : MonoBehaviour
 }
 ```
 
-Zoals een obstacle heeft een coin ook een *minSpeed* en *maxSpeed* die een willekeurige snelheid bepalen.
+Zoals een **obstacle** heeft een coin ook een *minSpeed* en *maxSpeed* die een willekeurige snelheid bepalen.
 
 ## Trainen van de Agent
 
@@ -437,3 +440,8 @@ Tijdens het leren kunnen we een live overzicht krijgen via TensorBoard door midd
 ```commando
 tensorboard --logdir results
 ```
+
+## Bronnen
+
+- David D'Haese (18-11-2020) <https://ddhaese.github.io/ML-Agents/>
+- Sebastian Schuchmann (18-05-2020) <https://www.youtube.com/watch?v=2Js4KiDwiyU>
