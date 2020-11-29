@@ -440,6 +440,14 @@ Tijdens het leren kunnen we een live overzicht krijgen via TensorBoard door midd
 tensorboard --logdir results
 ```
 
+## Voorbeeld
+
+Het reedst gecreëerde brein, is terug te vinden in Assets/Brains/Jumper.nn
+
+![Run](Screenshots/run.png)
+
+In deze grafiek kunnen we de cumulatieve beloning zien van een test training. We zien nog veel variatie tussen de episodes omdat niet elke environment zijn episode op hetzelfde moment eindigd. Environements die sneller eindigen worden sneller opgeslagen dan environments die later eindigen.
+
 ## Bronnen
 
 - David D'Haese (18-11-2020) <https://ddhaese.github.io/ML-Agents/>
