@@ -454,3 +454,4 @@ In deze grafiek kunnen we de cumulatieve beloning zien van een test training. We
 
 - David D'Haese (18-11-2020) <https://ddhaese.github.io/ML-Agents/>
 - Sebastian Schuchmann (18-05-2020) <https://www.youtube.com/watch?v=2Js4KiDwiyU>
+- Omar Santiago (28-10-2020) <https://www.youtube.com/watch?v=4YnuT5QMvM4&list=LL&index=2&t=1260s&ab_channel=OmarSantiago>
